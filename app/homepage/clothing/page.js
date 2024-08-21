@@ -10,6 +10,7 @@ const ClothingPage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const token = localStorage.getItem('token');
       try {
         const response = await fetch(`${config.apiBaseUrl}/product/list?category=Clothing&isActive=true`, {
           method: 'GET',

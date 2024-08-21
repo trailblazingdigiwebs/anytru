@@ -10,6 +10,7 @@ const EventsPage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const token = localStorage.getItem('token');
       try {
         const response = await fetch(`${config.apiBaseUrl}/product/list?category=EventSetups&isActive=true`, {
           method: 'GET',

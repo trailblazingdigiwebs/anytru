@@ -10,6 +10,7 @@ const GraphicsPage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const token = localStorage.getItem('token');
       try {
         const response = await fetch(`${config.apiBaseUrl}/product/list?category=PrintsGraphics&isActive=true`, {
           method: 'GET',

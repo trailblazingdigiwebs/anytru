@@ -11,6 +11,7 @@ const OthersPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        const token = localStorage.getItem('token');
         const response = await fetch(`${config.apiBaseUrl}/product/list?category=Others&isActive=true`, {
           method: 'GET',
           headers: {
