@@ -6,12 +6,14 @@ import Link from 'next/link';
 import config from '../config';
 import '../styles/dragAndDropUploader.css';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";
-import ReactQuill from 'react-quill';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false }); // import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import dynamic from 'next/dynamic';
 
 const CreatePost = () => {
+
     const [showModal, setShowModal] = useState(false);
     const [redirectUrl, setRedirectUrl] = useState('');
     const [file, setFile] = useState(null);
