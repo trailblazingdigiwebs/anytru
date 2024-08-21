@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    apiBaseUrl: 'https://anytru.ap-south-1.elasticbeanstalk.com',
+    apiBaseUrl: 'https://anytru-server.onrender.com',
     domainUrl: 'https://anytru.com',
 
     // apiBaseUrl: 'http://localhost:5000',
