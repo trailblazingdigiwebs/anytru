@@ -168,7 +168,7 @@ const MyOrders = () => {
                 )
                : (
                 <div className='emptyCartDiv'>
-                  <p><strong>You Haven't Placed Any Order Yet.</strong></p>
+                  <p><strong>You Haven&#39;t Placed Any Order Yet.</strong></p>
                   <img src="/images/empty-cart.png" alt="Empty Cart" />                  
                 </div>
               )}
