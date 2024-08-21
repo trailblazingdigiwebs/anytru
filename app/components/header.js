@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation'
 import Logo from "./logo";
 import SlidingDrawer from '../components/SlidingDrawer';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";
@@ -10,7 +11,9 @@ import { timeAgo } from '../utils/timeAgo';
 import {Tooltip, Button} from "@nextui-org/react";
 
 const Header = () => {
-
+  const router = useRouter();
+  const pathname = usePathname();
+    
   const [notifications, setNotifications] = useState([]);
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -22,7 +25,7 @@ const Header = () => {
   const openDrawer = () => setDrawerOpen(true);
   const closeDrawer = () => setDrawerOpen(false);
 
-  const router = useRouter();
+
   const hideHeaderPaths = ['/']; // Add paths where you want to hide the header
 
   const [userData, setUserData] = useState(null);
@@ -268,44 +271,44 @@ const fetchNotifications = async () => {
             </div>
 
             <div className="navMenuLinks">
-              <ul>
+              <ul> 
               <li>
-                <Link href="/homepage" className={router.pathname === '/homepage' ? 'active' : ''}>
+                <Link href="/homepage" className={`link ${pathname === '/homepage' ? 'active' : ''}`}>
                   All Categories
                 </Link>
               </li>
               <li>
-                <Link href="/homepage/furniture" className={router.pathname === '/homepage/furniture' ? 'active' : ''}>
+                <Link href="/homepage/furniture" className={`link ${pathname === '/homepage/furniture' ? 'active' : ''}`}>
                   Furniture
                 </Link>
               </li>
               <li>
-                <Link href="/homepage/home-decor" className={router.pathname === '/homepage/home-decor' ? 'active' : ''}>
+                <Link href="/homepage/home-decor" className={`link ${pathname === '/homepage/home-decor' ? 'active' : ''}`}>
                   Home Decor
                 </Link>
               </li>
               <li>
-                <Link href="/homepage/graphics" className={router.pathname === '/homepage/graphics' ? 'active' : ''}>
+                <Link href="/homepage/graphics" className={`link ${pathname === '/homepage/graphics' ? 'active' : ''}`}>
                   Graphics
                 </Link>
               </li>
               <li>
-                <Link href="/homepage/clothing" className={router.pathname === '/homepage/clothing' ? 'active' : ''}>
+                <Link href="/homepage/clothing" className={`link ${pathname === '/homepage/clothing' ? 'active' : ''}`}>
                   Clothing
                 </Link>
               </li>
               <li>
-                <Link href="/homepage/accessories" className={router.pathname === '/homepage/accessories' ? 'active' : ''}>
+                <Link href="/homepage/accessories" className={`link ${pathname === '/homepage/accessories' ? 'active' : ''}`}>
                   Accessories
                 </Link>
               </li>
               <li>
-                <Link href="/homepage/events" className={router.pathname === '/homepage/events' ? 'active' : ''}>
+                <Link href="/homepage/events" className={`link ${pathname === '/homepage/events' ? 'active' : ''}`}>
                   Events
                 </Link>
               </li>
               <li>
-                <Link href="/homepage/others" className={router.pathname === '/homepage/others' ? 'active' : ''}>
+                <Link href="/homepage/others" className={`link ${pathname === '/homepage/others' ? 'active' : ''}`}>
                   Others
                 </Link>
               </li>

@@ -2626,3 +2626,8 @@ button:focus-visible {
   margin: 0 10px;
   font-size: 16px;
 }
+
+.active {
+  font-weight: bold !important;
+  color: #F2682D !important; 
+}
