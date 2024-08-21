@@ -57,7 +57,9 @@ const CreatePost = () => {
 
     const handleAgree = () => {
         setShowModal(false);
-        window.location.href = redirectUrl;
+        if (typeof document !== 'undefined') {
+            window.location.href = redirectUrl;
+        }
     };
 
     const handleCancel = () => {
