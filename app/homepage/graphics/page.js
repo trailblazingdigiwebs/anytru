@@ -11,7 +11,13 @@ const GraphicsPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${config.apiBaseUrl}/product/list?category=PrintsGraphics&isActive=true`);
+        const response = await fetch(`${config.apiBaseUrl}/product/list?category=PrintsGraphics&isActive=true`, {
+          method: 'GET',
+          headers: {
+            'authorization': `${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
         const data = await response.json();
         setPosts(data.products);
       } catch (error) {

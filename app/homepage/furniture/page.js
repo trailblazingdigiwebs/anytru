@@ -11,7 +11,13 @@ const FurniturePage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${config.apiBaseUrl}/product/list?category=Furniture&isActive=true`);
+        const response = await fetch(`${config.apiBaseUrl}/product/list?category=Furniture&isActive=true`, {
+          method: 'GET',
+          headers: {
+            'authorization': `${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
         const data = await response.json();
         setPosts(data.products);
       } catch (error) {

@@ -11,7 +11,13 @@ const ClothingPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${config.apiBaseUrl}/product/list?category=Clothing&isActive=true`);
+        const response = await fetch(`${config.apiBaseUrl}/product/list?category=Clothing&isActive=true`, {
+          method: 'GET',
+          headers: {
+            'authorization': `${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
         const data = await response.json();
         setPosts(data.products);
       } catch (error) {
@@ -21,7 +27,7 @@ const ClothingPage = () => {
 
     fetchPosts();
   }, []);
-
+ 
   return (
     <div>
       <ResponsiveHeader />
