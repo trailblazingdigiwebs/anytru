@@ -110,7 +110,6 @@ const CreatePost = () => {
                     method: 'POST',
                     headers: {
                         'Authorization': `${token}`,
-                        'Cache-Control': 'no-cache',
                     },
                     body: data
                 });
