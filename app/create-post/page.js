@@ -87,6 +87,7 @@ const CreatePost = () => {
         event.preventDefault();
 
         const sku = generateSku();
+        console.log('sku', sku);
 
         if (file) {
             const data = new FormData();
