@@ -33,7 +33,10 @@ const FurniturePage = () => {
   return (
     <div>
       <ResponsiveHeader />
-      <main>
+      { posts.length === 0 ? (
+          <div className='noPosts'>No posts available at the moment in this category.</div>
+        ) : (
+          <main>
           <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 1100: 4, 1400: 4}}
             >
@@ -44,6 +47,7 @@ const FurniturePage = () => {
             </Masonry>
           </ResponsiveMasonry>
       </main>
+      )}
     </div>
   );
 };

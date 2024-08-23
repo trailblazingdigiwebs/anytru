@@ -110,6 +110,7 @@ const CreatePost = () => {
                     method: 'POST',
                     headers: {
                         'Authorization': `${token}`,
+                        'Cache-Control': 'no-cache',
                     },
                     body: data
                 });
@@ -136,6 +137,9 @@ const CreatePost = () => {
                     setShowSuccessMessage(true);
                     setTimeout(() => setShowSuccessMessage(false), 3000); // Hide after 3 seconds
                     setError(''); // Clear any previous error
+
+                    console.log('formdata', formData)
+                    event.target.reset();
                 } else {
                     const errorData = await response.json();
                     console.log(errorData)
