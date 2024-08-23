@@ -27,7 +27,7 @@ const CreatePost = () => {
         category: '',
         quantity: '',
         price: '',
-        expectedDelivery: "",
+        expectedDelivery: '',
     });
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [error, setError] = useState('');
@@ -128,7 +128,7 @@ const CreatePost = () => {
                         category: '',
                         quantity: '',
                         price: '',
-                        expectedDelivery: null,
+                        expectedDelivery: '',
                     });
                     setFile(null);
                     setPreviewUrl(null);
@@ -137,7 +137,6 @@ const CreatePost = () => {
                     setTimeout(() => setShowSuccessMessage(false), 3000); // Hide after 3 seconds
                     setError(''); // Clear any previous error
 
-                    console.log('formdata', formData)
                 } else {
                     const errorData = await response.json();
                     console.log(errorData)
