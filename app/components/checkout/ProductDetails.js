@@ -92,11 +92,11 @@ const ProductDetails = ({ postId, offerId, addressId }) => {
 
 
       const options = {
-        key: "rzp_live_nvJf4U6yTwOxGN",
+        key: "rzp_test_3fSbxV1af8FRWh",
         amount: offer.pricePerProduct * quantity,
         currency: data.order.currency,
         name: "AnyTru",
-        description: "RazorPay Test",
+        description: "Bring Your Ideas To Life",
         image: `${config.domainUrl}/images/logo.png`,
         order_id: data.order.id,
         callback_url: "http://localhost:5000/order/verificationPay",
