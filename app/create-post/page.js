@@ -100,8 +100,10 @@ const CreatePost = () => {
             data.append('category', formData.category);
             data.append('quantity', formData.quantity);
             data.append('price', formData.price);
-            data.append('dispatchDay',  formData.expectedDelivery,)
-
+            if(dispatchDay != null){
+                data.append('dispatchDay',  formData.expectedDelivery,)
+            }
+            
             const token = localStorage.getItem('token');
 
             try { 
