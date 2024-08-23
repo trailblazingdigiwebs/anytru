@@ -74,13 +74,24 @@ const CreatePost = () => {
     //     setFormData({ ...formData, [name]: value });
     // };
 
+    const generateSku = () => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let sku = 'anytru_';
+        for (let i = 0; i < 10; i++) {
+            sku += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return sku;
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const sku = generateSku();
 
         if (file) {
             const data = new FormData();
             data.append('image', file);
-            data.append('sku', formData.sku);
+            data.append('sku', sku);
             data.append('name', formData.name);
             data.append('description', formData.description);
             data.append('isActive', formData.isActive);
