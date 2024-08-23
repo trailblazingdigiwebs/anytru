@@ -76,7 +76,7 @@ const CreatePost = () => {
 
     const generateSku = () => {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let sku = 'anytru_';
+        let sku = 'anytru';
         for (let i = 0; i < 10; i++) {
             sku += characters.charAt(Math.floor(Math.random() * characters.length));
         }
