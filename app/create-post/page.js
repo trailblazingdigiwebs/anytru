@@ -138,7 +138,6 @@ const CreatePost = () => {
                     setError(''); // Clear any previous error
 
                     console.log('formdata', formData)
-                    event.target.reset();
                 } else {
                     const errorData = await response.json();
                     console.log(errorData)
