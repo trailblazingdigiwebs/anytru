@@ -1,7 +1,7 @@
 // config.js
 const config = {
     apiBaseUrl: 'https://anytru-server.onrender.com',
-    domainUrl: 'https://anytru.com',
+    domainUrl: 'https://anytru.ai',
 
     // apiBaseUrl: 'http://localhost:5000',
     // domainUrl: 'http://localhost:3000',
