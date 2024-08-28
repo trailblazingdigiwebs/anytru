@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import Post from '../components/post';
-import ResponsiveHeader from '../components/responsiveHeader';
+import Post from './components/post';
+import ResponsiveHeader from './components/responsiveHeader';
 import config from '../config';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 
