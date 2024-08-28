@@ -1,89 +1,130 @@
 'use client'
-import { useState } from 'react';
-import axios from 'axios';
-import config from '../config';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect, useRef  } from 'react';
+import Slider from "react-slick";
+import Button from '@mui/material/Button';
+import Link from "next/link";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";
+
+import SplashScreen from '../components/splashscreen';
+
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 export default function LoginPage() {
-  const [identifier, setIdentifier] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const router = useRouter();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-      const response = await axios.post(`${config.apiBaseUrl}/auth/login`, {
-        identifier,
-        password,
-      });
-      console.log('Login successful:', response.data);
-      
-      // Store the token in localStorage with "Bearer " prefix
-      const token = response.data.token; // Adjust this based on your API response structure
-      localStorage.setItem('token', `${token}`);
-
-      router.push('/homepage'); // Assuming there's a homepage
-    } catch (error) {
-      console.error('Error logging in:', error);
-      setError('Failed to log in. Please check your credentials.');
-    } finally {
-      setLoading(false);
-    }
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // autoplay: true,
+    autoplaySpeed: 2500,
   };
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the timeout duration as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [loading]);
+
+
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
-        <h2 className="text-2xl font-bold text-center">Login</h2>
-        {error && <div className="p-2 text-red-600 bg-red-100 border border-red-600 rounded">{error}</div>}
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="identifier" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="identifier"
-              name="identifier"
-              type="email"
-              autoComplete="email"
-              required
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
-              className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+    <main className="main">
+        {loading && <SplashScreen />}
+
+        <div className="loginBox">
+        <div className="colOne col">
+          <div className="fHeadDiv">
+            <h3 className="fHeadText fw300">Bring Your Ideas</h3>
+            <h2 className="PrimaryTextC fHeadText fw600">To Life</h2>
           </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+          <div className="carousel">
+            <Slider {...settings}>
+              <div>
+                <img src="/images/carousel-image-1.png"  />
+              </div>
+              <div>
+                <img src="/images/carousel-image-2.jpg"  />
+              </div>
+              <div>
+                <img src="/images/carousel-image-3.png" />
+              </div>
+              <div>
+                <img src="/images/carousel-image-4.jpg" />
+              </div>
+              <div>
+                <img src="/images/carousel-image-5.jpg" />
+              </div>
+            </Slider>
           </div>
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              {loading ? 'Logging in...' : 'Login'}
-            </button>
+        </div>
+        <div className="colTwo col">
+          <div className="loginLogo">
+            <img src="/images/logo.png" alt="AnyTru" width="333" height="79" />
           </div>
-        </form>
+          <p className='signInWith'>Sign in With</p>
+          <div className="loginButtons">
+          <Link href="/api/google-login" passHref><Button variant="primary" className="loginBtn"><img className="loginBtnImg" src="/images/Google.png" alt="Login With Google" /></Button></Link>
+          <Link href="/api/facebook-login" passHref><Button variant="primary" className="loginBtn"><img className="loginBtnImg" src="/images/Facebook.png" alt="Login With Facebook" /></Button></Link>
+          {/* <Link href="/homepage" passHref><Button variant="primary" className="loginBtn"><img className="loginBtnImg" src="/images/Apple.png" alt="Login With Apple" /></Button></Link> */}
+          </div>
+          <Link href="/Homepage-Guest" passHref><p className='exploreWithout'><span className="PrimaryTextC">Explore</span> without Signing In</p></Link>
+          <div className="socialDiv">
+            <p className="followUs">Follow AnyTru</p>
+            <div className="socialIcons">
+              <a href="https://www.instagram.com/anytruofficial/"><img src="/images/instagram-social.png" alt="Instagram" /></a>
+              <a href="https://www.facebook.com/anytruFB"><img src="/images/facebook-social.png" alt="Facebook" /></a>
+              <a href="https://www.youtube.com/channel/UC4CGD8c3P7ed74hJwUIdI_Q"><img src="/images/youtube.png" alt="YouTube" /></a>
+              <a href="https://twitter.com/AnyTruOfficial"><img  src="/images/Twitter.png" alt="Twitter" /></a>
+            </div>
+
+            <div className="query">
+              <Dropdown>
+                  <DropdownTrigger>
+                    <button>
+                        <img src="/images/query.png" alt="Have A Query" />
+                    </button>
+                  </DropdownTrigger>
+                  <DropdownMenu className="dropdownWrapperTwo" aria-label="Static Actions">
+                    <DropdownItem>
+                      <div className="queryPopup">
+                        <div className="queryPopupRow queryRowOne">
+                          <a href="#">How It Works</a>
+                          <a href="#">FAQs</a>
+                          <a href="#">Careers</a>
+                        </div>
+                        <div className="queryPopupRow queryRowtwo">
+                          <a href="#">Privacy Policy</a>
+                          <a href="#">Terms & Conditions</a>
+                        </div>
+                      </div>             
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
+
+
+
+
+    </main>
   );
 }

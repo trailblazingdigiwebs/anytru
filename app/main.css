@@ -516,6 +516,10 @@ main {
     height: 12px;
     }  
   
+  .post-button span {
+      margin-left: 24px;
+    }
+
   /* navigation link */
 
   .navMenuLinks {
@@ -1167,6 +1171,9 @@ main {
 /* Edit Profile Page */
 .react-tel-input .form-control{
   width: 100% !important;
+}
+
+.phone-input-container .react-tel-input {
   margin-bottom: 20px !important;
 }
 

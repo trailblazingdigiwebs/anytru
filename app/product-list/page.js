@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Post from '../components/post';
-import VendorDetails from '../components/vendorDetail';
 import ResponsiveHeader from '../components/responsiveHeader';
 import config from '../config';
 import { timeAgo } from '../utils/timeAgo';
@@ -14,7 +13,7 @@ const ProductList = () => {
   const searchParams = useSearchParams();
   const postId = searchParams.get('id'); // Getting postId from query params
 
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -143,17 +142,17 @@ const ProductList = () => {
               <div className='mainProductDescription'>
                 <h2>{post.name}</h2>
 
-                <p className='mainProdTitle'>SKU</p>
-                <p className='mainProdDesciption'>{post.sku}</p>
-
-                <p className='mainProdTitle'>Description</p>
-                <p className='mainProdDesciption'>{post.description}</p>
+                <p className='mainProdTitle'>Category :</p>
+                <p className='mainProdDesciption'>{post.category}</p>
 
                 <p className='mainProdTitle'>Post Created :</p>
                 <p className='mainProdDesciption'>{timeAgo(post.createdAt)} ago</p>
 
-                <p className='mainProdTitle'>Category :</p>
-                <p className='mainProdDesciption'>{post.category}</p>
+                {/* <p className='mainProdTitle'>SKU</p>
+                <p className='mainProdDesciption'>{post.sku}</p> */}
+
+                <p className='mainProdTitle'>Description</p>
+                <p className='mainProdDesciption'>{post.description}</p>
 
                 <p className='mainProdTitle'>Tags :</p>
                 <p className='mainProdDesciption'>{post.tags.join(', ')}</p>

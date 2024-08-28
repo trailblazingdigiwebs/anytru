@@ -151,7 +151,7 @@ const SlidingDrawer = ({ isOpen, onClose }) => {
             <div className='bio'>
               <h3>Account Type</h3>
               <p>
-                {userData.role === 'USER' ? 'Creator' 
+                {userData.role === 'USER' ? 'User' 
                 : userData.role === 'MERCHANT' ? 'Seller' 
                 : 'Not Available'}
               </p>

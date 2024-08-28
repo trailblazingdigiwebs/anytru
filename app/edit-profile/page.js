@@ -84,7 +84,7 @@ const EditProfile = () => {
     }
 
     if (phoneNumber.length !== 10) {
-      setError('Phone number must be exactly 10 digits.');
+      setError('Enter a valid Phone number of 10 digits.');
       return;
     }
   
@@ -158,7 +158,7 @@ const EditProfile = () => {
                 <div className='bio'>
                   <h3>Account Type</h3>
                   <p>
-                    {userData.role === 'USER' ? 'Creator' 
+                    {userData.role === 'USER' ? 'User' 
                     : userData.role === 'MERCHANT' ? 'Seller' 
                     : 'Not Available'}
                   </p>

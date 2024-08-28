@@ -22,6 +22,8 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const [isModalVisible, setModalVisible] = useState(false);
+
   const openDrawer = () => setDrawerOpen(true);
   const closeDrawer = () => setDrawerOpen(false);
 
@@ -134,6 +136,20 @@ const fetchNotifications = async () => {
     }
   };
 
+  const handleButtonClick = () => {
+    if (!userData) {
+      setModalVisible(true);
+    }
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const handleSignInSubmit = () => {
+    router.push(`/login`);
+  };
+
 
   return (
     <>
@@ -178,11 +194,18 @@ const fetchNotifications = async () => {
               </div>
 
 
-              <button className="post-button">
-                <Link href="/create-post" passHref className="flex items-center">
-                  <img src="/images/post-plus.png" alt="Post" />
-                  <span>Post</span>
-                </Link>
+              <button className="post-button" onClick={handleButtonClick}>
+                {userData ? (
+                  <Link href="/create-post" passHref className="flex items-center">
+                    <img src="/images/post-plus.png" alt="Post" />
+                    <span>Post</span>
+                  </Link>
+                ) : (
+                  <div className="flex items-center">
+                    <img src="/images/post-plus.png" alt="Post" />
+                    <span>Post</span>
+                  </div>
+                )}
               </button>
 
               <div className="secondaryMenuIcons">
@@ -261,7 +284,7 @@ const fetchNotifications = async () => {
                 {!userData && (
                   <div className='headerProfileIcon'>
                     <Tooltip showArrow={true} content="Sign In / Sign Up">
-                      <button><Link href="/"><img src="/images/login.png" alt="Profile" /></Link></button>
+                      <button><Link href="/login"><img src="/images/login.png" alt="Profile" /></Link></button>
                     </Tooltip>
                   </div>
                 )}
@@ -316,6 +339,19 @@ const fetchNotifications = async () => {
                      </ul>
             </div>
       </div>
+
+      {isModalVisible && (
+        <div className="wishlistModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="wishlistModalContent bg-white p-6 rounded-md shadow-md text-center">
+            <h2 className="text-xl font-semibold mb-4">Please Sign In / Sign Up</h2>
+            <p className="mb-4">You need to be signed in to create a post.</p>
+            <div>
+              <button className="btn-primary" onClick={handleSignInSubmit}>Sign In / Sign Up</button>
+              <button className="btn-secondary mt-4" onClick={closeModal}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
