@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";
+import { usePathname } from 'next/navigation';
 import config from '../config';
 
 
 const SideMenu = ({ isOpen, onClose }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
@@ -89,46 +90,46 @@ const SideMenu = ({ isOpen, onClose }) => {
 
       <ul>
         <li>
-          <Link href="/homepage" className={router.pathname === '/homepage' ? styles.active : ''}>
+          <Link href="/homepage" className={`link ${pathname === '/homepage' ? 'active' : ''}`}>
             All Categories
           </Link>
         </li>
         <li>
-          <Link href="/homepage/furniture" className={router.pathname === '/homepage/furniture' ? styles.active : ''}>
-            Furniture
-          </Link>
-        </li>
-        <li>
-          <Link href="/homepage/home-decor" className={router.pathname === '/homepage/home-decor' ? styles.active : ''}>
-            Home Decor
-          </Link>
-        </li>
-        <li>
-          <Link href="/homepage/graphics" className={router.pathname === '/homepage/graphics' ? styles.active : ''}>
-            Graphics
-          </Link>
-        </li>
-        <li>
-          <Link href="/homepage/clothing" className={router.pathname === '/homepage/clothing' ? styles.active : ''}>
-            Clothing
-          </Link>
-        </li>
-        <li>
-          <Link href="/homepage/accessories" className={router.pathname === '/homepage/accessories' ? styles.active : ''}>
-            Accessories
-          </Link>
-        </li>
-        <li>
-          <Link href="/homepage/events" className={router.pathname === '/homepage/events' ? styles.active : ''}>
-            Events
-          </Link>
-        </li>
-        <li>
-          <Link href="/homepage/others" className={router.pathname === '/homepage/others' ? styles.active : ''}>
-            Others
-          </Link>
-        </li> 
-      </ul>
+                <Link href="/homepage/furniture" className={`link ${pathname === '/homepage/furniture' ? 'active' : ''}`}>
+                  Furniture
+                </Link>
+              </li>
+              <li>
+                <Link href="/homepage/home-decor" className={`link ${pathname === '/homepage/home-decor' ? 'active' : ''}`}>
+                  Home Decor
+                </Link>
+              </li>
+              <li>
+                <Link href="/homepage/graphics" className={`link ${pathname === '/homepage/graphics' ? 'active' : ''}`}>
+                  Graphics
+                </Link>
+              </li>
+              <li>
+                <Link href="/homepage/clothing" className={`link ${pathname === '/homepage/clothing' ? 'active' : ''}`}>
+                  Clothing
+                </Link>
+              </li>
+              <li>
+                <Link href="/homepage/accessories" className={`link ${pathname === '/homepage/accessories' ? 'active' : ''}`}>
+                  Accessories
+                </Link>
+              </li>
+              <li>
+                <Link href="/homepage/events" className={`link ${pathname === '/homepage/events' ? 'active' : ''}`}>
+                  Events
+                </Link>
+              </li>
+              <li>
+                <Link href="/homepage/others" className={`link ${pathname === '/homepage/others' ? 'active' : ''}`}>
+                  Others
+                </Link>
+              </li>
+        </ul>
 
       <div className='mt-10 ml-10'>
           <button className="post-button">

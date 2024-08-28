@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
-import { useRouter } from 'next/navigation'; // Updated to next/router
+
 import Logo from "./logo";
 import SearchPage from "./search-page";
 import SlidingDrawer from '../components/SlidingDrawer';
@@ -22,7 +22,6 @@ const MobileHeader = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
-  const router = useRouter();
   const hideHeaderPaths = ['/']; // Add paths where you want to hide the header
 
   const [userData, setUserData] = useState(null);

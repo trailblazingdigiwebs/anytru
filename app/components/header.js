@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 import Logo from "./logo";
 import SlidingDrawer from '../components/SlidingDrawer';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from "@nextui-org/dropdown";

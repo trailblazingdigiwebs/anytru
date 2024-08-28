@@ -294,6 +294,26 @@ const CreatePost = () => {
                             /> */}
 
                             <label className="block text-sm font-medium text-gray-700">
+                                Category
+                            </label>
+                            <select
+                                name="category"
+                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                onChange={handleChange}
+                                value={formData.category}
+                            >
+                                <option value="">Please Select</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Prints & Graphics">Prints & Graphics</option>
+                                <option value="Home_Decor">Home Decor</option>
+                                <option value="Jewellery">Jewellery</option>
+                                <option value="Event Setups">Event Setups</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Others">Others</option>
+                            </select>
+
+                            <label className="block text-sm font-medium text-gray-700">
                                 Title
                             </label>
                             <input
@@ -325,26 +345,6 @@ const CreatePost = () => {
                                 onChange={handleChange}
                                 value={formData.price}
                             /> */}
-
-                            <label className="block text-sm font-medium text-gray-700">
-                                Category
-                            </label>
-                            <select
-                                name="category"
-                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                onChange={handleChange}
-                                value={formData.category}
-                            >
-                                <option value="">Please Select</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Clothing">Clothing</option>
-                                <option value="Prints & Graphics">Prints & Graphics</option>
-                                <option value="Home_Decor">Home Decor</option>
-                                <option value="Jewellery">Jewellery</option>
-                                <option value="Event Setups">Event Setups</option>
-                                <option value="Accessories">Accessories</option>
-                                <option value="Others">Others</option>
-                            </select>
 
 
                             <label className="block text-sm font-medium text-gray-700">

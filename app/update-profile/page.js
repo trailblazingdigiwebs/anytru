@@ -6,8 +6,8 @@ import config from '../config';
 const UpdateProfile = () => {
   const router = useRouter();
   const [newUserId, setNewUserId] = useState('');
-  const [bio, setBio] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');  
+  // const [bio, setBio] = useState('');
+  // const [phoneNumber, setPhoneNumber] = useState('');  
   const [error, setError] = useState('');
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
@@ -43,8 +43,8 @@ const UpdateProfile = () => {
       const data = await response.json();
       setUserData(data.user);
       setNewUserId(data.user.newUserId || '');
-      setPhoneNumber(data.user.phoneNumber || '');
-      setBio(data.user.bio || '');
+      // setPhoneNumber(data.user.phoneNumber || '');
+      // setBio(data.user.bio || '');
       console.log('data fetched successfully:', data.user);
     } catch (error) {
       console.error('There has been a problem with your fetch operation:', error);
@@ -68,8 +68,8 @@ const UpdateProfile = () => {
   
     const formData = new FormData();
     formData.append('newUserId', newUserId);
-    formData.append('phoneNumber', phoneNumber);
-    formData.append('bio', bio);
+    // formData.append('phoneNumber', phoneNumber);
+    // formData.append('bio', bio);
   
     try {
       const response = await fetch(`${config.apiBaseUrl}/user/${userData._id}`, {
@@ -105,12 +105,12 @@ const UpdateProfile = () => {
         <div className="updateProfileLogo">
           <img src="/images/logo.png" alt="AnyTru" width="333" height="79" />
         </div>
-        <p className="updateProfileText">Please add following details before continuing</p>
+        <p className="updateProfileText">Please add a personalised Username before continuing</p>
 
         <div className="updateProfile">
           <form onSubmit={handleSubmit}>
             <label className="block text-sm font-medium text-gray-700">
-              User ID
+              Username
             </label>
             <input
               type="text"
@@ -121,7 +121,7 @@ const UpdateProfile = () => {
               className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
             
-            <label className="block text-sm font-medium text-gray-700">
+            {/* <label className="block text-sm font-medium text-gray-700">
               Phone Number
             </label>
             <input
@@ -142,7 +142,7 @@ const UpdateProfile = () => {
               onChange={(e) => setBio(e.target.value)}
               placeholder={userData?.bio || 'Enter your bio'}
               className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-            />
+            /> */}
 
             {error && <p className="text-red-500">{error}</p>}
 
