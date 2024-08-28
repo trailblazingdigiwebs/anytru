@@ -71,7 +71,7 @@ const MobileHeader = () => {
       <div className="mobileHeaderWrap">
         <div className="mobileBottomBar">
           <div className="secondaryMenuIcons">
-            <a href="/homepage"><img src="/images/account.png" alt="Home" /></a>
+            <a href="/"><img src="/images/account.png" alt="Home" /></a>
             <Dropdown>
               <DropdownTrigger>
                 <button>
