@@ -7,7 +7,7 @@ import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-
+ 
   useEffect(() => {
     const fetchPosts = async () => {
       const token = localStorage.getItem('token');

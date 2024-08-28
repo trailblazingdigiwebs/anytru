@@ -307,6 +307,10 @@ const Post = ({ post }) => {
   };
 
   const handleReportSubmit = async () => {
+    if (!currentUser) {
+      setSignInModalVisible(true);
+    }
+
     const token = localStorage.getItem('token');
     if (!token) return;
 
@@ -344,7 +348,7 @@ const Post = ({ post }) => {
         <div className="wishlistModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="wishlistModalContent bg-white p-6 rounded-md shadow-md text-center">
             <h2 className="text-xl font-semibold mb-4">Please Sign In / Sign Up</h2>
-            <p className="mb-4">You need to be signed in to create a post.</p>
+            <p className="mb-4">You need to be signed in to Like, Save or Order this product.</p>
             <div>
               <button className="btn-primary" onClick={handleSignInSubmit}>Sign In / Sign Up</button>
               <button className="btn-secondary mt-4" onClick={closeSignInModal}>Cancel</button>
