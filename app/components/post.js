@@ -57,6 +57,8 @@ const Post = ({ post }) => {
   const [reportType, setReportType] = useState(null); // 'post' or 'user'
   const [reportReason, setReportReason] = useState('');
 
+  const [isSignInModalVisible, setSignInModalVisible] = useState(false);
+
   const router = useRouter();
 
   const shareUrl = `${config.domainUrl}/product-list?id=${post._id}`;
@@ -154,6 +156,11 @@ const Post = ({ post }) => {
 
   const handleLike = async (e) => {
     e.preventDefault();
+
+    if (!currentUser) {
+      setSignInModalVisible(true);
+    }
+
     const token = localStorage.getItem('token');
     
     if (!token) {
@@ -184,7 +191,12 @@ const Post = ({ post }) => {
   };
 
   const handleSave = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
+
+    if (!currentUser) {
+      setSignInModalVisible(true);
+    }
+
     const token = localStorage.getItem('token');
     
     if (!token) {
@@ -228,7 +240,11 @@ const Post = ({ post }) => {
   };
 
   const handleCart = () => {
-        router.push(`/offers?id=${post._id}`);
+
+    if (!currentUser) {
+      setSignInModalVisible(true);
+    }
+    router.push(`/offers?id=${post._id}`);
   };
 
   const handleShare = async () => {
@@ -270,6 +286,16 @@ const Post = ({ post }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+
+  const closeSignInModal = () => {
+    setSignInModalVisible(false);
+  };
+
+  const handleSignInSubmit = () => {
+    router.push(`/login`);
+  };
+
 
   const closeReportModal = () => {
     setIsReportModalOpen(false)
@@ -314,6 +340,18 @@ const Post = ({ post }) => {
 
   return (
     <div className="postWrapper">
+      {isSignInModalVisible && (
+        <div className="wishlistModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="wishlistModalContent bg-white p-6 rounded-md shadow-md text-center">
+            <h2 className="text-xl font-semibold mb-4">Please Sign In / Sign Up</h2>
+            <p className="mb-4">You need to be signed in to create a post.</p>
+            <div>
+              <button className="btn-primary" onClick={handleSignInSubmit}>Sign In / Sign Up</button>
+              <button className="btn-secondary mt-4" onClick={closeSignInModal}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
       {isModalOpen && (
         <div className="wishlistModal">
           <div className="wishlistModalContent">
@@ -346,18 +384,19 @@ const Post = ({ post }) => {
           <div className="userName"><p>{post.user.firstName} {post.user.lastName}
             <span className="postTime">{timeAgo(post.createdAt)}</span>
           </p></div>
-          {currentUser?._id !== post.user._id && (
-          <div className='flex'>
-            {isFollowing ? (
-              <button className="followPostBtn" onClick={handleUnfollow}>
-                Unfollow
-              </button>
-            ) : (
-              <button className="followPostBtn" onClick={handleFollow}>
-                Follow
-              </button>
-            )}
-          </div>
+
+          {currentUser && currentUser._id !== post.user._id && (
+            <div className='flex'>
+              {isFollowing ? (
+                <button className="followPostBtn" onClick={handleUnfollow}>
+                  Unfollow
+                </button>
+              ) : (
+                <button className="followPostBtn" onClick={handleFollow}>
+                  Follow
+                </button>
+              )}
+            </div>
           )}
         </div>
         <Dropdown>

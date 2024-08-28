@@ -34,7 +34,7 @@ const HomePage = () => {
   return (
     <div>
       <ResponsiveHeader />
-      {/* <MobileHeader /> */}
+      {/* <MobileHeader /> */} 
       <main>
       <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 1100: 4, 1400: 4}}
