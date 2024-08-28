@@ -148,7 +148,7 @@ const UpdateProfile = () => {
 
             <div className="up-submit">
               <button type="submit">
-                <span>Submit</span>
+                <span>Create Account</span>
               </button>
             </div>
           </form>
