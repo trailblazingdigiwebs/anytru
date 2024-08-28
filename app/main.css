@@ -1165,6 +1165,11 @@ main {
 }
 
 /* Edit Profile Page */
+.react-tel-input .form-control{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .changePicIcon {
   background: #fcfcfc;
   border-radius: 40%;
