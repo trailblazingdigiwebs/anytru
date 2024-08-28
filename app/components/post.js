@@ -159,35 +159,37 @@ const Post = ({ post }) => {
 
     if (!currentUser) {
       setSignInModalVisible(true);
-    }
-
-    const token = localStorage.getItem('token');
+    } else {
+      const token = localStorage.getItem('token');
     
-    if (!token) {
-      console.error('No token found');
-      return;
-    }
-
-    try {
-      const response = await fetch(`${config.apiBaseUrl}/product/like/${post._id}`, {
-        method: 'PUT',
-        headers: {
-          'authorization': `${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Liked / Unliked successfully:', result);
-        setLikes(liked ? likes - 1 : likes + 1);
-        setLiked(!liked);
-      } else {
-        console.error('Failed to like / Unlike:', response.statusText);
+      if (!token) {
+        console.error('No token found');
+        return;
       }
-    } catch (error) {
-      console.error('Error liking / unliking post:', error);
+  
+      try {
+        const response = await fetch(`${config.apiBaseUrl}/product/like/${post._id}`, {
+          method: 'PUT',
+          headers: {
+            'authorization': `${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+  
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Liked / Unliked successfully:', result);
+          setLikes(liked ? likes - 1 : likes + 1);
+          setLiked(!liked);
+        } else {
+          console.error('Failed to like / Unlike:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error liking / unliking post:', error);
+      }
     }
+
+
   };
 
   const handleSave = async (e) => {
@@ -195,35 +197,36 @@ const Post = ({ post }) => {
 
     if (!currentUser) {
       setSignInModalVisible(true);
-    }
-
-    const token = localStorage.getItem('token');
+    } else {
+      const token = localStorage.getItem('token');
     
-    if (!token) {
-      console.error('No token found');
-      return;
-    }
-
-    try {
-      const response = await fetch(`${config.apiBaseUrl}/wishlist/add/${post._id}`, {
-        method: 'POST',
-        headers: {
-          'authorization': `${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Saved to wishlist successfully:', result);
-        setModalMessage(result.message); // Set the message from the server response
-        setIsModalOpen(true); // Show the modal on success
-      } else {
-        console.error('Failed to save to wishlist:', response.statusText);
+      if (!token) {
+        console.error('No token found');
+        return;
       }
-    } catch (error) {
-      console.error('Error saving to wishlist:', error);
+  
+      try {
+        const response = await fetch(`${config.apiBaseUrl}/wishlist/add/${post._id}`, {
+          method: 'POST',
+          headers: {
+            'authorization': `${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+  
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Saved to wishlist successfully:', result);
+          setModalMessage(result.message); // Set the message from the server response
+          setIsModalOpen(true); // Show the modal on success
+        } else {
+          console.error('Failed to save to wishlist:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error saving to wishlist:', error);
+      }
     }
+
   };
 
   const handlePostClick = () => {
@@ -243,8 +246,10 @@ const Post = ({ post }) => {
 
     if (!currentUser) {
       setSignInModalVisible(true);
+    } else {
+      router.push(`/offers?id=${post._id}`);
     }
-    router.push(`/offers?id=${post._id}`);
+    
   };
 
   const handleShare = async () => {
