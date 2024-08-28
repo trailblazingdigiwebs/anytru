@@ -5,6 +5,8 @@ import FollowersFollowingDrawer from '../components/followers-following';
 import config from '../config';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 
 const EditProfile = () => {
@@ -14,6 +16,7 @@ const EditProfile = () => {
   const [newUserId, setNewUserId] = useState('');
   const [bio, setBio] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');  
+  const [countryCode, setCountryCode] = useState('in');
   const [error, setError] = useState('');
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
@@ -65,6 +68,12 @@ const EditProfile = () => {
     const urlRegex = /((https?:\/\/)?[^\s]+\.(com|in|co\.in|co|io|ai|net|org|edu|gov|us|uk|ca|au|de|fr|jp|cn|ru|br|za|it|es|nl|se|no|fi|dk|pl|pt|hk|kr|sg|my|tw|vn|th|id|ph|hk|ae|sa|il|gr|cz|at|ch|be|sk|hu|bg|ro|si|hr|lt|lv|ee|lu|cy|mt|is|lt|ua)(\/[^\s]*)?)/gi;
     return !urlRegex.test(text);
   };
+
+  const handlePhoneNumberChange = (value, country, e, formattedValue) => {
+    const digitOnlyNumber = value.replace(/[^0-9]/g, '').slice(-10);
+    setPhoneNumber(digitOnlyNumber);
+    setCountryCode(country.countryCode);
+  };
     
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,12 +82,17 @@ const EditProfile = () => {
       setError('Bio cannot contain links or URLs.');
       return;
     }
+
+    if (phoneNumber.length !== 10) {
+      setError('Phone number must be exactly 10 digits.');
+      return;
+    }
   
     const formData = new FormData();
     formData.append('firstName', firstName);
     formData.append('lastName', lastName);
     formData.append('newUserId', newUserId);
-    formData.append('phoneNumber', phoneNumber);
+    formData.append('phoneNumber', `+${countryCode}${phoneNumber}`);
     formData.append('bio', bio);
   
     try {
@@ -208,12 +222,17 @@ const EditProfile = () => {
               <label className="block text-sm font-medium text-gray-700">
                 Phone Number
               </label>
-              <input
-                type="text"
+              <PhoneInput
+                country={countryCode}
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder={userData?.phoneNumber || 'Enter your phone number'}
-                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                onChange={handlePhoneNumberChange}
+                inputProps={{
+                  name: 'phone',
+                  required: true,
+                }}
+                containerClass="phone-input-container"
+                inputClass="phone-input"
+                buttonClass="phone-dropdown"
               />
 
               <label className="block text-sm font-medium text-gray-700">
