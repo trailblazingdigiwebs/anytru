@@ -302,14 +302,15 @@ const Post = ({ post }) => {
   };
 
   const openReportModal = (type) => {
+    if (!currentUser) {
+      setSignInModalVisible(true);
+    }
+
     setReportType(type);
     setIsReportModalOpen(true);
   };
 
   const handleReportSubmit = async () => {
-    if (!currentUser) {
-      setSignInModalVisible(true);
-    }
 
     const token = localStorage.getItem('token');
     if (!token) return;
