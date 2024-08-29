@@ -14,22 +14,35 @@ export default function Home() {
     const fetchPosts = async () => {
       const token = localStorage.getItem('token');
 
-      try {
-        const response = await fetch(`${config.apiBaseUrl}/product/list?isActive=true`, {
-          method: 'GET',
-          headers: {
-            'authorization': `${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        const data = await response.json();
-        setPosts(data.products);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
+      if (token){
+        try {
+          const response = await fetch(`${config.apiBaseUrl}/product/list?isActive=true`, {
+            method: 'GET',
+            headers: {
+              'authorization': `${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+  
+          const data = await response.json();
+          setPosts(data.products);
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+        }
+      } else {
+        try {
+          const response = await fetch(`${config.apiBaseUrl}/product/list?isActive=true`, {
+            method: 'GET',
+          });
+  
+          const data = await response.json();
+          setPosts(data.products);
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+        }         
       }
-    };
 
+    }
     fetchPosts();
   }, []);
 
