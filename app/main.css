@@ -58,12 +58,18 @@ transition: var(--speed) ease;
 /* Media query for screens smaller than 768px (typical tablet and mobile screens) */
 @media (max-width: 1000px) {
 
+  .up-submit Button{
+    width: 70%;
+  }
+
   .updateProfile {
     width: unset !important;
     }
   
   .updateProfileText {
-    font-size: 22px !important;
+    font-weight: 500 !important;
+    color: #333333 !important;
+    font-size: 20px !important;
   }  
 
   .cartItem{

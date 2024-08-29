@@ -83,7 +83,7 @@ export default function LoginPage() {
           <Link href="/api/facebook-login" passHref><Button variant="primary" className="loginBtn"><img className="loginBtnImg" src="/images/Facebook.png" alt="Login With Facebook" /></Button></Link>
           {/* <Link href="/homepage" passHref><Button variant="primary" className="loginBtn"><img className="loginBtnImg" src="/images/Apple.png" alt="Login With Apple" /></Button></Link> */}
           </div>
-          <Link href="/Homepage-Guest" passHref><p className='exploreWithout'><span className="PrimaryTextC">Explore</span> without Signing In</p></Link>
+          <Link href="/" passHref><p className='exploreWithout'><span className="PrimaryTextC">Explore</span> without Signing In</p></Link>
           <div className="socialDiv">
             <p className="followUs">Follow AnyTru</p>
             <div className="socialIcons">
