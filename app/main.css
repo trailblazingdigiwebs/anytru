@@ -1550,7 +1550,8 @@ main {
   }
   
   .loginBtn {
-    width: 50vw;
+    width: 50vw !important;
+    margin: 20px auto !important;
   }
 
   .fHeadDiv {
