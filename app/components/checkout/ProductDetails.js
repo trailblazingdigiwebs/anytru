@@ -112,6 +112,7 @@ const ProductDetails = ({ postId, offerId, addressId }) => {
           color: "#F2682D",
         },
       };
+      console.log('amount:', options.amount);
       const razor = new Razorpay(options);
       razor.open();
 
