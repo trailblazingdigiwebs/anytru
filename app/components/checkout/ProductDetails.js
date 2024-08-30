@@ -92,7 +92,7 @@ const ProductDetails = ({ postId, offerId, addressId }) => {
 
 
       const options = {
-        key: "rzp_test_3fSbxV1af8FRWh",
+        key: "rzp_live_nvJf4U6yTwOxGN",
         amount: offer.pricePerProduct * quantity,
         currency: data.order.currency,
         name: "AnyTru",
