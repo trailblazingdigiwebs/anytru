@@ -78,7 +78,7 @@ const ProductDetails = ({ postId, offerId, addressId }) => {
           productId: postId,
           offerId: offerId,
           addressId: addressId,
-          quantity: quantity
+          // quantity: quantity
         })
       });
 
