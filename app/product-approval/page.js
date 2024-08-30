@@ -161,7 +161,7 @@ const ProductList = () => {
                 <img src="/images/aproval-image.png" alt="Approval" />
               </div>
               <div className="approval-form">
-                <h1>Modern Chair</h1>
+                <h1>{post.name}</h1>
                 <form onSubmit={handleSubmit}>
                   <label>Price Per Piece For Buyers</label>
                   <input 
