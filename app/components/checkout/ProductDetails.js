@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import config from '../../config';
 
-const ProductDetails = ({ postId, offerId, addressId }) => {
+const ProductDetails = ({ postId, offerId, addressId, deliveryMethod }) => {
   const [product, setProduct] = useState(null);
   const [offer, setOffer] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
@@ -67,8 +67,14 @@ const ProductDetails = ({ postId, offerId, addressId }) => {
     setCheckoutSuccess(false);
     try {
       const token = localStorage.getItem('token');
+      console.log( 'productId:', postId,
+        'offerId:', offerId,
+        'addressId:', addressId,
+        'quantity:', quantity,
+        'deliverytype', deliveryMethod
+        )
 
-      const response = await fetch(`${config.apiBaseUrl}/order/checkoutSingle`, {
+      const response = await fetch(`${config.apiBaseUrl}/order/checkoutSingle?deliveryType=${deliveryMethod}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,21 +84,21 @@ const ProductDetails = ({ postId, offerId, addressId }) => {
           productId: postId,
           offerId: offerId,
           addressId: addressId,
-          // quantity: quantity
+          quantity: 1
         })
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Network response was not ok', error);
       }
 
       const data = await response.json();
       console.log('Order success:', data);
       setCheckoutSuccess(true);
 
-
+      //rzp_test_3fSbxV1af8FRWh  - rzp_test_cfXgi2vqOS38cq
       const options = {
-        key: "rzp_live_nvJf4U6yTwOxGN",
+        key: "rzp_live_nvJf4U6yTwOxGN", 
         amount: offer.pricePerProduct * quantity,
         currency: data.order.currency,
         name: "AnyTru",

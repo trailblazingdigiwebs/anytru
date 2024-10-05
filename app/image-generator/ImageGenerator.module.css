@@ -1,0 +1,121 @@
+.container {
+    height: 100vh;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+  }
+  
+ .logo{
+    display: flex;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .inputDiv{
+    justify-content: center;
+    display: flex;
+    }
+
+  .inputContainer {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 20px;
+    width: 80%;
+  }
+  
+  .input {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #2e2e2e;
+    color: #ffffff;
+  }
+  
+  .input::placeholder {
+    color: #888;
+  }
+  
+  .generateButton {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #3b82f6;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .generateButton:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .generateButton:hover:not(:disabled) {
+    background-color: #2563eb;
+  }
+  
+  .loadingText {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+  }
+  
+  .imageContainer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .generatedImage {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .regenerateButton, .postButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .regenerateButton {
+    background-color: #4b5563;
+    color: #ffffff;
+  }
+  
+  .regenerateButton:hover {
+    background-color: #374151;
+  }
+  
+  .postButton {
+    background-color: #10b981;
+    color: #ffffff;
+  }
+  
+  .postButton:hover {
+    background-color: #059669;
+  }
+  

@@ -1,0 +1,130 @@
+.filter-container {
+    flex-direction: column;
+    position: fixed; /* Allows positioning over the rest of the content */
+    top: 0; /* Aligns to the top */
+    left: 0; /* Aligns to the left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; /* Center the popup */
+    align-items: center; /* Center the popup */
+    z-index: 1000; /* Make sure it’s on top */
+  }
+  
+  .filter-popup {
+    background: white; /* Background color for the popup */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the popup */
+    position: relative; /* For positioning child elements */
+    width: 600px; /* Set a width for the popup */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a lifted effect */
+  }
+  
+  .closeDiv{
+    position: relative;
+    width: 600px;
+    display: flex;
+  }
+
+  .close-button {
+    /* position: absolute; 
+    top: 10px;     right: 10px;  */
+    background: none; /* No background */
+    border: none; /* No border */
+    font-size: 24px; /* Font size for the close button */
+    cursor: pointer; /* Pointer cursor on hover */
+    z-index: 1; /* Make sure it's above other elements */
+    margin-left: auto;
+    margin-bottom: 10px;
+    color: #ffffff !important;
+  }
+  
+  .filter-header {
+    margin-bottom: 20px; /* Space below the header */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+/* .filter-container {
+    position: relative;
+  }
+  
+  .filter-button {
+    padding: 10px 20px;
+    background-color: #F2682D;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .filter-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    z-index: 1000;
+    padding: 20px;
+  }
+  
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  } */
+  
+  .close-button {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .filter-content {
+    padding: 0 10px;
+  }
+  
+  .filter-section {
+    margin-bottom: 15px;
+  }
+  
+  .checkbox-group label {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .slider {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .filter-footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .clear-button, .apply-button {
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+  }
+  
+  .clear-button {
+    background: #ffffff;
+    color: #F2682D;
+  }
+  
+  .apply-button {
+    background: #F2682D;
+    color: white;
+  }
+  

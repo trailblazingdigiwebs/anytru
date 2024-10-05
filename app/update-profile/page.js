@@ -96,7 +96,7 @@ const UpdateProfile = () => {
   
   const handleProceedToHomepage = () => {
     setIsSuccessModalVisible(false);
-    router.push('/homepage');
+    router.push('/');
   };
 
   return (

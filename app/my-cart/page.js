@@ -95,7 +95,7 @@ const MyCart = () => {
   
   const handleProceedToHomepage = () => {
     setIsSuccessModalVisible(false);
-    router.push('/homepage');
+    router.push('/');
   };
 
   const stayHereEditMore = () => {

@@ -11,7 +11,7 @@ export default function GoogleCallback() {
       // Save the token to local storage or cookie
       localStorage.setItem('token', token);
       // Redirect to user page
-      router.push('/homepage');
+      router.push('/');
     }
   }, [router]);
 

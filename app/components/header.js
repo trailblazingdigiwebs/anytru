@@ -9,6 +9,7 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem 
 import config from '../config';
 import { timeAgo } from '../utils/timeAgo';
 import {Tooltip, Button} from "@nextui-org/react";
+import ProfilePopup from '../components/ProfilePopup';
 
 const Header = () => {
   const router = useRouter();
@@ -32,6 +33,18 @@ const Header = () => {
 
   const [userData, setUserData] = useState(null);
   const [token, setToken] = useState('');
+
+// temp
+const user = {
+  profileImage: 'https://randomuser.me/api/portraits/women/68.jpg',
+  firstName: 'Divya',
+  lastName: 'Agarwal',
+  username: 'DivyaAgarwal_28',
+  followers: 24,
+  following: 15,
+  bio: "Creating a life I love, one click at a time. In a world full of trends, I'm a classic.",
+  phoneNumber: '+91 1234567890',
+};
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -154,73 +167,75 @@ const fetchNotifications = async () => {
   return (
     <>
       <div className={`header-container ${hideHeaderPaths.includes(router.pathname) ? 'hidden' : ''}`}>
+        <div className='header-padding'>
             <div className="mainHeaderRow">
               <Logo />     
 
-              <div className="relative">
-                <div className="search_bar">
-                  <input
-                    type="text"
-                    id="inputId"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    onBlur={handleSearchBlur}
-                    onFocus={handleSearchFocus}
-                    placeholder="What are you looking for today?"
-                    className="bg-[transparent] outline-none border-none w-full py-3 pl-2 pr-3"
-                  />
-                  <div className="searchIconWrapper">
+              <div className="searchDiv">
+                <div className="relative">
+                  <div className="search_bar">
                     <img src="/images/search.png" alt="Search" />
+                    <input
+                      type="text"
+                      id="inputId"
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                      onBlur={handleSearchBlur}
+                      onFocus={handleSearchFocus}
+                      placeholder="What are you looking for today?"
+                      className="bg-[transparent] outline-none border-none w-full py-3 pl-2 pr-3"
+                    />
                   </div>
+                  {showDropdown && (
+                    <div className="searchDropdown absolute bg-white border border-gray-300 mt-2 w-full z-10">
+                      {searchResults.length > 0 ? (
+                        searchResults.map((product) => (
+                          <div key={product._id} className="p-2 hover:bg-gray-200 cursor-pointer">
+                            <Link href={`${config.domainUrl}/product-list?id=${product._id}`}>
+                              <div className='searchResultProduct'>
+                                <p>{product.name}</p>
+                                <img src={product.imageUrl} />
+                              </div>
+                            </Link>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="p-2">No results found</div>
+                      )}
+                    </div>
+                  )}
                 </div>
-                {showDropdown && (
-                  <div className="searchDropdown absolute bg-white border border-gray-300 mt-2 w-full z-10">
-                    {searchResults.length > 0 ? (
-                      searchResults.map((product) => (
-                        <div key={product._id} className="p-2 hover:bg-gray-200 cursor-pointer">
-                          <Link href={`${config.domainUrl}/product-list?id=${product._id}`}>
-                            <div className='searchResultProduct'>
-                              <p>{product.name}</p>
-                              <img src={product.imageUrl} />
-                            </div>
-                          </Link>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="p-2">No results found</div>
-                    )}
-                  </div>
-                )}
-              </div>
 
+                <div className="searchIconWrapper">
+                  <img src="/images/header/audio-search.svg" alt="Search" />
+                </div>
+              </div>
 
               <button className="post-button" onClick={handleButtonClick}>
                 {userData ? (
                   <Link href="/create-post" passHref className="flex items-center">
-                    <img src="/images/post-plus.png" alt="Post" />
-                    <span>Post</span>
+                    <span>Generate</span>
+                    <img src="/images/header/plus.svg" alt="Post" />
                   </Link>
                 ) : (
                   <div className="flex items-center">
-                    <img src="/images/post-plus.png" alt="Post" />
-                    <span>Post</span>
+                    <span>Generate</span>
+                    <img src="/images/header/plus.svg" alt="Post" />
                   </div>
                 )}
               </button>
 
               <div className="secondaryMenuIcons">
-                <a href="/"><img src="/images/account.png" alt="Home" /></a>
-
                 <Dropdown>
                   <DropdownTrigger>
                     <button>
-                      <img src="/images/notification.png" alt="Notification" />
+                      <img src="/images/header/notification.svg" alt="Notification" />
                     </button>
                   </DropdownTrigger>
                   <DropdownMenu className="dropdownWrapper" aria-label="Static Actions">
                     <DropdownItem className='dropdownHighlight'>
                         <span className='flex gap-4'>
-                            <img src="/images/notification.png" alt="Notification" />
+                            <img src="/images/header/notification.svg" alt="Notification" />
                             Notifications ({notifications.length})
                         </span>
                     </DropdownItem>
@@ -247,10 +262,11 @@ const fetchNotifications = async () => {
                   </DropdownMenu>
                 </Dropdown>
 
+                {/* <button><Link href="/messages"><img src="/images/header/message.svg" alt="messages" /></Link></button> */}
                 <Dropdown>
                   <DropdownTrigger>
                     <button>
-                        <img src="/images/messages.png" alt="Messages" />
+                        <img src="/images/header/message.svg" alt="Messages" />
                     </button>
                   </DropdownTrigger>
                   <DropdownMenu className="dropdownWrapper" aria-label="Static Actions">
@@ -261,7 +277,7 @@ const fetchNotifications = async () => {
                 <Dropdown>
                   <DropdownTrigger>
                     <button>
-                      <img src="/images/settings.png" alt="Settings" />
+                      <img src="/images/header/settings.svg" alt="Settings" />
                     </button>
                   </DropdownTrigger>
                   <DropdownMenu className="dropdownWrapper" aria-label="Static Actions">
@@ -277,14 +293,15 @@ const fetchNotifications = async () => {
 
                 {userData && (
                 <div className='headerProfileIcon'>
-                  <button onClick={openDrawer}><img src={userData.avatar || "/images/default-profile-pic.png"} alt="Profile" /></button>
-                  <SlidingDrawer isOpen={isDrawerOpen} onClose={closeDrawer} />
+                  <button onClick={openDrawer}><img className="headerProfileImg" src={userData.avatar || "/images/default-profile-pic.png"} alt="Profile" /></button>
+                  {/* <SlidingDrawer isOpen={isDrawerOpen} onClose={closeDrawer} /> */}
+                  <ProfilePopup user={user} isOpen={isDrawerOpen} onClose={closeDrawer} />
                 </div>
                 )}
                 {!userData && (
                   <div className='headerProfileIcon'>
                     <Tooltip showArrow={true} content="Sign In / Sign Up">
-                      <button><Link href="/login"><img src="/images/login.png" alt="Profile" /></Link></button>
+                      <button><Link href="/login"><img className="headerProfileImg" src="/images/login.png" alt="Profile" /></Link></button>
                     </Tooltip>
                   </div>
                 )}
@@ -296,7 +313,7 @@ const fetchNotifications = async () => {
             <div className="navMenuLinks">
               <ul> 
               <li>
-                <Link href="/homepage" className={`link ${pathname === '/homepage' ? 'active' : ''}`}>
+                <Link href="/" className={`link ${pathname === '/' ? 'active' : ''}`}>
                   All Categories
                 </Link>
               </li>
@@ -338,6 +355,7 @@ const fetchNotifications = async () => {
 
                      </ul>
             </div>
+        </div>
       </div>
 
       {isModalVisible && (

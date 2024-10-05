@@ -28,11 +28,11 @@
     "react-quill": "^2.0.0",
     "react-responsive-masonry": "^2.2.0",
     "react-share": "^5.1.0",
-    "react-slick": "^0.30.2",
     "reactjs-popup": "^2.0.6",
     "sharp": "^0.33.4",
     "slick-carousel": "^1.8.1",
-    "socket.io-client": "^4.7.5"
+    "socket.io-client": "^4.7.5",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "eslint": "^8",

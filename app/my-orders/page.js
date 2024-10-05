@@ -132,7 +132,7 @@ const MyOrders = () => {
                 orders.map((order) => (
                   <div key={order._id} className='cartItem flex gap-8 align-center'>
                     <div className='cartItemImg'>
-                      <img src="/images/No_Image_Available.jpg" alt="Cart Image" />
+                      <img src={order.product.imageUrl || "/images/No_Image_Available.jpg"} alt="Cart Image" />
                     </div>
                     <div className='cartItemDetails'>
                       <h3>{order.orderId}</h3>

@@ -90,7 +90,7 @@ const SideMenu = ({ isOpen, onClose }) => {
 
       <ul>
         <li>
-          <Link href="/homepage" className={`link ${pathname === '/homepage' ? 'active' : ''}`}>
+          <Link href="/" className={`link ${pathname === '/' ? 'active' : ''}`}>
             All Categories
           </Link>
         </li>

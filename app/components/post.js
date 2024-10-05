@@ -64,6 +64,9 @@ const Post = ({ post }) => {
   const shareUrl = `${config.domainUrl}/product-list?id=${post._id}`;
   const shareTitle = 'Check out this product from Anytru!';
 
+  console.log('post', post);
+  console.log('isFollowing', isFollowing);
+
   useEffect(() => {
     // Fetch current user's data
     const fetchCurrentUser = async () => {
@@ -155,7 +158,7 @@ const Post = ({ post }) => {
   };
 
   const handleLike = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (!currentUser) {
       setSignInModalVisible(true);
@@ -388,28 +391,111 @@ const Post = ({ post }) => {
           </div>
         </div>
       )}
+      <div className="MainPostWrapper">
+        <div className="MainPost cursPointer" >
+          <div className="post">
+            <img src={post.imageUrl} alt="Post Image" />
+              <div className="post_like"  onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering handlePostClick
+                handleLike();
+              }}>
+                <p> <svg className="likesHeart" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10.1 15.55L10 15.65L9.89 15.55C5.14 11.24 2 8.39 2 5.5C2 3.5 3.5 2 5.5 2C7.04 2 8.54 3 9.07 4.36H10.93C11.46 3 12.96 2 14.5 2C16.5 2 18 3.5 18 5.5C18 8.39 14.86 11.24 10.1 15.55ZM14.5 0C12.76 0 11.09 0.81 10 2.08C8.91 0.81 7.24 0 5.5 0C2.42 0 0 2.41 0 5.5C0 9.27 3.4 12.36 8.55 17.03L10 18.35L11.45 17.03C16.6 12.36 20 9.27 20 5.5C20 2.41 17.58 0 14.5 0Z"
+                    fill={liked ? "red" : "#F8F8F8"}
+                  />
+                </svg> {likes}</p>
+              </div>
+          </div>
+
+          <div className="overlay" onClick={handlePostClick}>
+            {currentUser && currentUser._id !== post.user._id && (
+              <div>
+                {isFollowing ? (
+                  <button className="followPostBtn" onClick={ (e) => {
+                      e.stopPropagation(); // Prevent triggering handlePostClick
+                      handleUnfollow();
+                    } }>
+                    Unfollow
+                  </button>
+                ) : (
+                  <button className="followPostBtn" onClick={ (e) => {
+                      e.stopPropagation(); // Prevent triggering handlePostClick
+                      handleFollow();
+                    } }>
+                    Follow
+                  </button>
+                )}
+              </div>
+            )}
+            <Dropdown>
+              <DropdownTrigger>
+                <button className="moreButton" >
+                  <img src="/images/post/more-dots.svg" alt="likes" />
+                </button>
+              </DropdownTrigger>
+              <DropdownMenu className="dropdownWrapperTwo" aria-label="Static Actions">
+                <DropdownItem key="pinPost" >Pin Post</DropdownItem>
+                <DropdownItem key="reportPost" onClick={() => openReportModal('post')}>Report Post</DropdownItem>
+                <DropdownItem key="reportUser" onClick={() => openReportModal('user')}>Report User</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+            <div className="post_like_overlay" onClick={ (e) => {
+                e.stopPropagation(); // Prevent triggering handlePostClick
+                handleLike();
+              } }>
+                <p> <svg className="likesHeart" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10.1 15.55L10 15.65L9.89 15.55C5.14 11.24 2 8.39 2 5.5C2 3.5 3.5 2 5.5 2C7.04 2 8.54 3 9.07 4.36H10.93C11.46 3 12.96 2 14.5 2C16.5 2 18 3.5 18 5.5C18 8.39 14.86 11.24 10.1 15.55ZM14.5 0C12.76 0 11.09 0.81 10 2.08C8.91 0.81 7.24 0 5.5 0C2.42 0 0 2.41 0 5.5C0 9.27 3.4 12.36 8.55 17.03L10 18.35L11.45 17.03C16.6 12.36 20 9.27 20 5.5C20 2.41 17.58 0 14.5 0Z"
+                    fill={liked ? "red" : "black"}
+                  />
+                </svg> {likes}</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="userOptions">
         <div className="postUserDetails">
           <div className="userAvatar"><img src={post.user.avatar} alt="User Avatar" /></div>
-          <div className="userName"><p>{post.user.firstName} {post.user.lastName}
-            <span className="postTime">{timeAgo(post.createdAt)}</span>
-          </p></div>
+          <div className="userName">
+            <p>{post.user.firstName} {post.user.lastName}</p>
+            <span className="postTime">{timeAgo(post.createdAt)}</span>            
+          </div>
 
-          {currentUser && currentUser._id !== post.user._id && (
-            <div className='flex'>
-              {isFollowing ? (
-                <button className="followPostBtn" onClick={handleUnfollow}>
-                  Unfollow
-                </button>
-              ) : (
-                <button className="followPostBtn" onClick={handleFollow}>
-                  Follow
-                </button>
-              )}
-            </div>
-          )}
+
+
         </div>
-        <Dropdown>
+
+        <div className="share_save">
+              <Dropdown>
+                  <DropdownTrigger>
+                    <button>
+                      <img src="/images/post/share.svg" alt="Share With Friends" />
+                    </button>
+                  </DropdownTrigger>
+                  <DropdownMenu className="dropdownWrapper" aria-label="Static Actions">
+                    <DropdownItem key="new"><ShareButtons url={shareUrl} title={shareTitle} /></DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+
+            
+            <a href="#" onClick={handleSave}>
+            <svg width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1.33398 18.3332V2.49984C1.33398 2.27882 1.42178 2.06686 1.57806 1.91058C1.73434 1.7543 1.9463 1.6665 2.16732 1.6665H13.834C14.055 1.6665 14.267 1.7543 14.4232 1.91058C14.5795 2.06686 14.6673 2.27882 14.6673 2.49984V18.3332L8.00065 14.8861L1.33398 18.3332Z"
+                fill={post.isWishlisted ? "#F1672D" : "none"}
+                stroke= "black"
+                strokeWidth="2"
+                strokeLinejoin="round"
+              />
+            </svg>
+            </a>
+
+            {currentUser?.role !== 'MERCHANT' && post.isOffers &&(
+            <a href="#" onClick={handleCart}><img src="/images/post/cart.svg" alt="Add To Cart" /></a>
+            )}
+        </div>
+        {/* <Dropdown>
           <DropdownTrigger>
             <button>
               <img src="/images/post/more.png" alt="More Options" />
@@ -420,59 +506,7 @@ const Post = ({ post }) => {
             <DropdownItem key="reportPost" onClick={() => openReportModal('post')}>Report Post</DropdownItem>
             <DropdownItem key="reportUser" onClick={() => openReportModal('user')}>Report User</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
-      </div>
-      <div className="MainPostWrapper">
-        <div className="MainPost cursPointer" onClick={handlePostClick}>
-          <div className="post">
-            <img src={post.imageUrl} alt="Post Image" />
-            {post.description && (
-              <div className="post_caption">
-                <p>Descriptions: {post.description}</p>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="postReactions">
-          <div className="likes">
-            <a className="flex align-center" href="#" onClick={handleLike}>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill={liked ? "#F2682D" : "none"} 
-                stroke={liked ? "#F2682D" : "#000000"} 
-                className="w-6 h-6"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                />
-              </svg>
-              <span>{likes} likes</span>
-            </a>
-          </div>
-          <div className="share_save">
-              <Dropdown>
-                  <DropdownTrigger>
-                    <button>
-                      <img src="/images/post/share.png" alt="Share With Friends" />
-                    </button>
-                  </DropdownTrigger>
-                  <DropdownMenu className="dropdownWrapper" aria-label="Static Actions">
-                    <DropdownItem key="new"><ShareButtons url={shareUrl} title={shareTitle} /></DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-
-            
-            {/* <a href="#" onClick={handleShare}><img src="/images/post/share.png" alt="Share With Friends" /></a> */}
-            <a href="#" onClick={handleSave}><img src="/images/post/save.png" alt="Save It" /></a>
-            {currentUser?.role !== 'MERCHANT' && (
-            <a href="#" onClick={handleCart}><img src="/images/post/cart.png" alt="Add To Cart" /></a>
-            )}
-          </div>
-        </div>
+        </Dropdown> */}
       </div>
     </div>
   );

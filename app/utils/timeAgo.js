@@ -7,31 +7,31 @@ export function timeAgo(date) {
 
     const seconds = differenceInSeconds(now, parsedDate);
     if (seconds < 60) {
-      return `${seconds}s`;
+      return `${seconds} sec${seconds > 1 ? 's' : ''} ago`;
     }
 
     const minutes = differenceInMinutes(now, parsedDate);
     if (minutes < 60) {
-      return `${minutes}m`;
+      return `${minutes} min${minutes > 1 ? 's' : ''} ago`;
     }
 
     const hours = differenceInHours(now, parsedDate);
     if (hours < 24) {
-      return `${hours}h`;
+      return `${hours} hour${hours > 1 ? 's' : ''} ago`;
     }
 
     const days = differenceInDays(now, parsedDate);
     if (days < 30) {
-      return `${days}d`;
+      return `${days} day${days > 1 ? 's' : ''} ago`;
     }
 
     const months = differenceInMonths(now, parsedDate);
     if (months < 12) {
-      return `${months}mo`;
+      return `${months} month${months > 1 ? 's' : ''} ago`;
     }
 
     const years = differenceInYears(now, parsedDate);
-    return `${years}y`;
+    return `${years} year${years > 1 ? 's' : ''} ago`;
   } catch (error) {
     console.error("Invalid date format:", date, error);
     return "Invalid date";

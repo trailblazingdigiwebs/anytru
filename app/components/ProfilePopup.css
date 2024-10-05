@@ -1,0 +1,151 @@
+/* ProfilePopup.css */
+.popup-overlay {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-container {
+    display: flex;
+    gap: 20px;
+    background: white;
+    width: 800px;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .profile-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+    color: black !important;
+  }
+  
+  .profile-close-div{
+    position: relative;
+    width: 800px;
+    display: flex;
+  }
+
+
+  .profile-header {
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 35%;
+  }
+  
+  .profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detailsTitle{
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .detailsText{
+    line-height: 15px;
+    font-size: 12px;
+  }
+
+  .profile-details .fullname{
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .profile-details .username{
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+
+  }
+
+  .profile-details .followers{
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  .profile-form {
+    width: 65%;
+  }
+
+  .profileFormTitle{
+    font-weight: 600;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    margin-bottom: 5px;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .save-button {
+    padding: 5px 20px;
+    background: #F2682D; /* Use your preferred theme color */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .saveBtnDiv{
+    display: flex;
+    justify-content: end;
+  }
+  
+
+  .user-profile-details, .profile-details{
+    margin-bottom: 20px;
+  }
+
+  .profileButton{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .profileButton p{
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .user-profile-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

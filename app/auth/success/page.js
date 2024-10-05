@@ -64,7 +64,7 @@ export default function AuthSuccess() {
           router.push('/update-profile');
         }, 100);
       } else {
-        router.push('/homepage');
+        router.push('/');
       }
 
       console.log('data fetched successfully:', data.user);

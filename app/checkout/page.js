@@ -17,6 +17,7 @@ const CheckoutPage = () => {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [loading, setLoading] = useState(true);
+  const [deliveryMethod, setDeliveryMethod] = useState('Standard'); 
 
   // Extract `offer` and `id` from query params
   const searchParams = useSearchParams();
@@ -86,8 +87,11 @@ const CheckoutPage = () => {
           )}
           <div className='showFlex'>
             <div className='width-30'>
-              <ProductDetails postId={postId} offerId={offerId} addressId={selectedAddress} />
-              <DeliveryMethods/>
+              <ProductDetails postId={postId} offerId={offerId} addressId={selectedAddress} deliveryMethod={deliveryMethod}/>
+              <DeliveryMethods 
+                deliveryMethod={deliveryMethod} 
+                setDeliveryMethod={setDeliveryMethod} // Track changes to delivery method
+              />
             </div>
             <div className='width-50'>
               <div className="anytru-boxColumn">
