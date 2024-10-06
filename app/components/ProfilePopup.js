@@ -13,7 +13,7 @@ const ProfilePopup = ({ isOpen, onClose }) => {
   const [countryCode, setCountryCode] = useState('in');
   const [error, setError] = useState('');
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-  const [userData, setUserData] = useState(null);
+//   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -85,7 +85,7 @@ const ProfilePopup = ({ isOpen, onClose }) => {
     formData.append('bio', bio);
 
     try {
-      const response = await fetch(`${config.apiBaseUrl}/user/${userData._id}`, {
+      const response = await fetch(`${config.apiBaseUrl}/user/${user._id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `${token}`,

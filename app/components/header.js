@@ -284,7 +284,7 @@ const fetchNotifications = async () => {
                 <div className='headerProfileIcon'>
                   <button onClick={openDrawer}><img className="headerProfileImg" src={userData.avatar || "/images/default-profile-pic.png"} alt="Profile" /></button>
                   {/* <SlidingDrawer isOpen={isDrawerOpen} onClose={closeDrawer} /> */}
-                  <ProfilePopup user={user} isOpen={isDrawerOpen} onClose={closeDrawer} />
+                  <ProfilePopup isOpen={isDrawerOpen} onClose={closeDrawer} />
                 </div>
                 )}
                 {!userData && (

@@ -16,7 +16,7 @@
 }
 
 .hideOnMobile{
-  display: block;
+  display: flex;
 }
 
 /* SplashScreen */
@@ -1721,7 +1721,7 @@ main {
   }
 
   .main{
-    padding: 2rem 100px;
+    padding: 2rem 30px;
   }
 
   .hideOnMobile{
