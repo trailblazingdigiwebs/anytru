@@ -899,6 +899,7 @@ main {
   display: flex;
   gap: 10px;
   justify-content: center;
+  align-items: center;
 }
 
 .postReactions img {
@@ -1789,6 +1790,23 @@ main {
 
   .divOF, .divTF, .divOT, .divTT{
     flex: 1 1 100%; /* Full width for all child divs */
+  }
+
+  .filter-popup, .closeDiv{
+    width: 85% !important;
+  }
+
+  .userName p{
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .postTime{
+    font-size: 10px;
+  }
+
+  .userAvatar img{
+    width: 30px;
+    height: 30px;
   }
 
   .similarProduct{
