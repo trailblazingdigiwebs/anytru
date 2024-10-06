@@ -104,8 +104,12 @@ export default function Home() {
           </div>
 
           <div className='right-filters'>
-            <button onClick={() => setIsFilterPopupOpen(true)} className="flex items-center">
+            <button onClick={() => setIsFilterPopupOpen(true)} className="flex items-center hideOnMobile">
               <span>Filters</span>
+              <img src="/images/header/filters.svg" alt="Filters" />
+            </button>
+
+            <button onClick={() => setIsFilterPopupOpen(true)} className="flex items-center hideOnDesktop">
               <img src="/images/header/filters.svg" alt="Filters" />
             </button>
           </div>

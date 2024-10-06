@@ -51,7 +51,7 @@ const SideMenu = ({ isOpen, onClose }) => {
     <div className={`sideMenu ${isOpen ? 'open' : ''}`}>
       <div className="closeButton" onClick={onClose}>✖</div>
 
-      <div className="relative">
+      {/* <div className="relative">
                 <div className="search_bar">
                   <input
                     type="text"
@@ -85,7 +85,7 @@ const SideMenu = ({ isOpen, onClose }) => {
                     )}
                   </div>
                 )}
-              </div>
+              </div> */}
 
 
       <ul>
@@ -131,14 +131,14 @@ const SideMenu = ({ isOpen, onClose }) => {
               </li>
         </ul>
 
-      <div className='mt-10 ml-10'>
+      {/* <div className='mt-10 ml-10'>
           <button className="post-button">
                 <Link href="/create-post" passHref className="flex items-center">
                   <img src="/images/post-plus.png" alt="Post" />
                   <span>Post</span>
                 </Link>
           </button>
-      </div>
+      </div> */}
     </div>
   );
 };

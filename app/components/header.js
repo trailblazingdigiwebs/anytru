@@ -34,17 +34,6 @@ const Header = () => {
   const [userData, setUserData] = useState(null);
   const [token, setToken] = useState('');
 
-// temp
-const user = {
-  profileImage: 'https://randomuser.me/api/portraits/women/68.jpg',
-  firstName: 'Divya',
-  lastName: 'Agarwal',
-  username: 'DivyaAgarwal_28',
-  followers: 24,
-  following: 15,
-  bio: "Creating a life I love, one click at a time. In a world full of trends, I'm a classic.",
-  phoneNumber: '+91 1234567890',
-};
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -213,12 +202,12 @@ const fetchNotifications = async () => {
 
               <button className="post-button" onClick={handleButtonClick}>
                 {userData ? (
-                  <Link href="/create-post" passHref className="flex items-center">
+                  <Link href="/create-post" passHref className="flex gap-3 items-center">
                     <span>Generate</span>
                     <img src="/images/header/plus.svg" alt="Post" />
                   </Link>
                 ) : (
-                  <div className="flex items-center">
+                  <div className="flex gap-3 items-center">
                     <span>Generate</span>
                     <img src="/images/header/plus.svg" alt="Post" />
                   </div>

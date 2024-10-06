@@ -11,6 +11,14 @@
   border-radius: 0px !important;
 }
 
+.hideOnDesktop{
+  display: none;
+}
+
+.hideOnMobile{
+  display: block;
+}
+
 /* SplashScreen */
 .splashScreen {
   position: fixed;
@@ -402,7 +410,7 @@ main {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 
 .mobileHeaderWrap .topBar {
@@ -1690,6 +1698,10 @@ main {
 
 @media only screen and (max-width: 900px) {
 
+  .search_bar{
+    margin: 0px !important;
+  }
+
   .likes svg {
     height: 22px;
   }
@@ -1712,10 +1724,31 @@ main {
     padding: 2rem 100px;
   }
 
+  .hideOnMobile{
+    display: none;
+  }
+
+  .hideOnDesktop{
+    display: block;
+  }
+
+  .emptyDiv{
+    margin: 20px 0;
+  }
+
   .logoHeader {
     width: 170px;
     margin-top: 5px;
   }
+
+  .left-filters{
+    gap: 8px !important;
+  }
+  .active-filter, .inactive-filter{
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+  }
+
   .headerProfileImg {
     width: 34px ;
     height: 34px ;
@@ -2370,9 +2403,14 @@ button:focus-visible {
   border-radius: 10px;
 }
 
+.mobileSecondDiv{
+  display: flex;
+  margin: 10px 15px;
+  gap: 8px;
+}
 
 .mobileBottomBar{
-    box-shadow: 0 0 10px 0px;
+    box-shadow: 0px -4px 4px -1px rgba(0, 0, 0, 0.09);
     position: fixed;
     width: 100%;
     bottom: 0;
@@ -2845,4 +2883,10 @@ button:focus-visible {
 .active {
   font-weight: bold !important;
   color: #F2682D !important; 
+}
+
+.mobileProfileIcon img{
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
 }
