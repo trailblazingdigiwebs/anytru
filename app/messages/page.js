@@ -6,11 +6,19 @@ import config from '../config';
 
 const Messages = () => {
     const [chats, setChats] = useState([]);
-    const currentUserId = localStorage.getItem('token');
+
 
     useEffect(() => {
+        const currentUserId = localStorage.getItem('token');
+        
         const fetchChats = async () => {
+            setLoading(true);
             const token = currentUserId;
+            if (!token) {
+                console.error('No token found');
+                setLoading(false);
+                return;
+            }
             try {
                 const response = await fetch(`${config.apiBaseUrl}/chat/`, {
                     method: 'GET',
@@ -19,14 +27,17 @@ const Messages = () => {
                     }
                 });
                 const data = await response.json();
-                setChats(data); // Store the fetched chat data
+                setChats(data);
             } catch (error) {
                 console.error('Error fetching chats:', error);
+            } finally {
+                setLoading(false);
             }
         };
-
+    
         fetchChats();
     }, []);
+    
 
 
     return (
@@ -43,7 +54,7 @@ const Messages = () => {
                                     const otherUser = chat.users.find(user => user._id !== currentUserId);
                                     
                                     // If we find the other user, render their details in the IndividualChat component
-                                    return otherUser && <IndividualChat key={index} user={otherUser} />;
+                                    return otherUser && <IndividualChat key={otherUser._id} user={otherUser} />;
                                 })}
                             </div>
                         </div>
