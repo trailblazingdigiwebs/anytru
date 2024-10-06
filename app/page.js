@@ -143,7 +143,7 @@ export default function Home() {
             <h2>No posts available for the applied filters</h2>
           </div>
         ) :  (
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1100: 4, 1400: 4 }}>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 2, 1100: 4, 1400: 4 }}>
           <Masonry className='postsGrid'>
             {posts.map((post) => (
               <Post key={post._id} post={post} />

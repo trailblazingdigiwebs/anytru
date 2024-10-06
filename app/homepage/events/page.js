@@ -37,7 +37,7 @@ const EventsPage = () => {
         ) : (
           <main>
           <ResponsiveMasonry
-                columnsCountBreakPoints={{350: 1, 750: 2, 1100: 4, 1400: 4}}
+                columnsCountBreakPoints={{350: 2, 750: 2, 1100: 4, 1400: 4}}
             >
             <Masonry>
               {posts.map((post, index) => (
